@@ -570,3 +570,58 @@ video {
     grid-template-columns: 1fr;
   }
 }
+
+.ml-item {
+  cursor: zoom-in;
+}
+
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px;
+  background: rgba(2, 6, 4, 0.82);
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+}
+
+.lightbox.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.lightbox img {
+  max-width: min(92vw, 1400px);
+  max-height: 88vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  border-radius: 18px;
+  border: 1px solid rgba(118, 249, 77, 0.18);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.45);
+  background: #08100d;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  width: 52px;
+  height: 52px;
+  border: 1px solid rgba(118, 249, 77, 0.18);
+  border-radius: 999px;
+  background: rgba(10, 16, 13, 0.86);
+  color: #f3f7f2;
+  font-size: 1.8rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.lightbox-close:hover {
+  transform: scale(1.04);
+}
