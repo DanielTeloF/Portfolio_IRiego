@@ -128,7 +128,8 @@ video {
 }
 
 .hero-main {
-  max-width: 1120px;
+  width: 100%;
+  max-width: none;
 }
 
 .hero-grid {
@@ -151,10 +152,12 @@ video {
 
 .hero h1 {
   margin: 0;
+  width: 100%;
+  max-width: none;
   font-size: clamp(3.2rem, 7vw, 6.8rem);
   line-height: 0.95;
   letter-spacing: -0.055em;
-  max-width: 11ch;
+  text-wrap: balance;
 }
 
 .hero-text {
@@ -168,8 +171,10 @@ video {
 .hero-bottom {
   display: grid;
   grid-template-columns: 0.95fr 1.2fr;
-  gap: 24px;
+  column-gap: 24px;
+  row-gap: 42px;
   align-items: start;
+  margin-top: 10px;
 }
 
 .hero-left {
