@@ -499,3 +499,22 @@ video {
     flex-direction: column;
   }
 }
+
+.gif-sequence {
+  position: relative;
+  overflow: hidden;
+}
+
+.gif-sequence img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.gif-sequence img.active {
+  opacity: 1;
+}

@@ -60,3 +60,30 @@ document.addEventListener("DOMContentLoaded", () => {
     yearNode.textContent = new Date().getFullYear();
   }
 });
+
+document.querySelectorAll(".gif-sequence").forEach((container) => {
+  const gifs = container.querySelectorAll("img");
+
+  if (gifs.length < 2) return;
+
+  let index = 0;
+
+  const playNext = () => {
+    const current = gifs[index];
+
+    const duration =
+      parseInt(current.dataset.duration) || 5000;
+
+    setTimeout(() => {
+      current.classList.remove("active");
+
+      index = (index + 1) % gifs.length;
+
+      gifs[index].classList.add("active");
+
+      playNext();
+    }, duration);
+  };
+
+  playNext();
+});
