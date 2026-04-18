@@ -1,22 +1,26 @@
 document.addEventListener("DOMContentLoaded", () => {
   const animatedElements = document.querySelectorAll(".reveal");
 
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("revealed");
-        } else {
-          entry.target.classList.remove("revealed");
-        }
-      });
-    },
-    {
-      threshold: 0.15,
-    }
-  );
+  const updateRevealState = () => {
+    const viewportHeight = window.innerHeight;
 
-  animatedElements.forEach((element) => observer.observe(element));
+    animatedElements.forEach((element) => {
+      const rect = element.getBoundingClientRect();
+
+      const visibleTop = rect.top < viewportHeight * 0.82;
+      const visibleBottom = rect.bottom > viewportHeight * 0.18;
+
+      if (visibleTop && visibleBottom) {
+        element.classList.add("revealed");
+      } else {
+        element.classList.remove("revealed");
+      }
+    });
+  };
+
+  updateRevealState();
+  window.addEventListener("scroll", updateRevealState, { passive: true });
+  window.addEventListener("resize", updateRevealState);
 
   const navLinks = document.querySelectorAll('a[href^="#"]');
 
@@ -49,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
   };
 
   handleHeaderState();
-  window.addEventListener("scroll", handleHeaderState);
+  window.addEventListener("scroll", handleHeaderState, { passive: true });
 
   const yearNode = document.querySelector("[data-current-year]");
   if (yearNode) {
